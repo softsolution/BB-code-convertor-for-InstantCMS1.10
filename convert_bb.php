@@ -42,6 +42,13 @@
     if($items){
         
         $rules = array();
+        
+        $rules[] = array('search'=>"'<div\sclass=\"bb_tag_video\">(.*?)<\/div>'si" , 'replace'=>"[video]$1[/video]");
+
+        $rules[] = array('search'=>"'<div\sclass=\"forum_lostimg\">(.*?)\"(.*?)\"(.*?)<\/div>'si" , 'replace'=>"[IMG]$2[/IMG]");
+        $rules[] = array('search'=>"'<div\sclass=\"forum_zoom\"(.*?)href=\"(.*?)\"(.*?)forum_zoom_text(.*?)<\/div>(.*?)<\/div>'si" , 'replace'=>"[IMG]$2[/IMG]");
+        $rules[] = array('search'=>"'<div\sclass=\"bb_img\"(.*?)src=\"(.*?)\"(.*?)<\/div>'si" , 'replace'=>"[IMG]$2[/IMG]");
+
         $rules[] = array('search'=>"'<div\sclass=\"bb_quote\"><strong>(.*?)<\/strong><br>(.*?)<div\sclass=\"quote\">(.*?)<\/div>(.*?)<\/div>'si" , 'replace'=>"[quote=$1]$3[/quote]");
 
         $rules[] = array('search'=>"'<div\sclass=\"bb_tag_code\">(.*?)background:none;\svertical-align:top;\">(.*?)<\/div>(.*?)<\/li>(.*?)<\/ol>(.*?)<\/pre>(.*?)<\/div>'si" , 'replace'=>"[code=php]$2[/code]");
@@ -59,12 +66,7 @@
         $rules[] = array('search'=>"'<h3\sclass=\"bb_tag_h3\">(.*?)</h3>'si" , 'replace'=>"[h3]$1[/h3]");
         $rules[] = array('search'=>"'<a\shref=\"mailto:(.*?)\">(.*?)<\/a>'si" , 'replace'=>"[email]$1[/email]");
         $rules[] = array('search'=>"'<img\ssrc=\"\/images\/smilies/(.*?).gif\"(.*?)>'si", 'replace'=>":$1:");
-        $rules[] = array('search'=>"'<div\sclass=\"bb_tag_video\">(.*?)<\/div>'si" , 'replace'=>"[video]$1[/video]");
 
-        $rules[] = array('search'=>"'<div\sclass=\"forum_lostimg\">(.*?)\"(.*?)\"(.*?)<\/div>'si" , 'replace'=>"[IMG]$2[/IMG]");
-        $rules[] = array('search'=>"'<div\sclass=\"forum_zoom\"(.*?)href=\"(.*?)\"(.*?)forum_zoom_text(.*?)<\/div>(.*?)<\/div>'si" , 'replace'=>"[IMG]$2[/IMG]");
-        $rules[] = array('search'=>"'<div\sclass=\"bb_img\"(.*?)src=\"(.*?)\"(.*?)<\/div>'si" , 'replace'=>"[IMG]$2[/IMG]");
-        
         foreach($items as $item){
             
             $html = '';
